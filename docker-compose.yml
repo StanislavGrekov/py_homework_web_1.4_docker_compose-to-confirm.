@@ -4,7 +4,6 @@ services:
 
   db:
     image: postgres:12.0-alpine
-    restart: always
     volumes:
       - pgdata:/var/lib/postgresql/data
     environment:
@@ -16,7 +15,7 @@ services:
     build: ./project/
     depends_on:
       - db
-    command: python manage.py migrate
+    command: gunicorn api_with_restrictions.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ./project/:/usr/src/app
     ports:
