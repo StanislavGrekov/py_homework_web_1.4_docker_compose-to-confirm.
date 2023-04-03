@@ -10,13 +10,16 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        # User.objects.create(username='user2', password = '123456', is_staff= False)
+        user=User.objects.create(username='Ivan', password = '123456', is_staff= False)
 
-        # adv1 = Advertisement.objects.get(id=1)
-        # print(adv1.creator.date_joined)
+        Advertisement.objects.create(title="Продaм холодильник",
+                                     description="Хороший холодильник",
+                                     status="Open",
+                                     creator=user,
+                                     open=True,
+                                     )
 
-        # adv = Advertisement.objects.filter(id__gt=2)
-        # for adv in Advertisement.objects.filter(id__gt=2):
+        # for adv in Advertisement.objects.all():
         #     print(adv.title)
 
         # for adv in Advertisement.objects.filter(created_at__month__gte=2):
